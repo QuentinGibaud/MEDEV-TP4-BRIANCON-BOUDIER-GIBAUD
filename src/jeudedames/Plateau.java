@@ -5,10 +5,42 @@
  */
 package jeudedames;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Quentin GIBAUD
  */
 public class Plateau {
-    //gére les pions, les cases et les joueurs
+    //Gére les pions, les cases et les joueurs
+    
+    //Attributs
+    private ArrayList<Joueur> joueurs ;
+    private Case[][] plateau;
+    private ArrayList<Pion> pions;
+
+    //Getters and setters
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
+        this.joueurs = joueurs;
+    }
+
+    public Case[][] getPlateau() {
+        return plateau;
+    }
+
+    public void setPlateau(Case[][] plateau) {
+        this.plateau = plateau;
+    }
+
+    public ArrayList<Pion> getPions() {
+        return pions;
+    }
+
+    public void setPions(ArrayList<Pion> pions) {
+        this.pions = pions;
+    }
 }

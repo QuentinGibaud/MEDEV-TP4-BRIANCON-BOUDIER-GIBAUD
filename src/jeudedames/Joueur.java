@@ -10,5 +10,15 @@ package jeudedames;
  * @author Quentin GIBAUD
  */
 public class Joueur {
-    
+    //Attributs 
+    private String nom;
+
+    //Getter and setter
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }

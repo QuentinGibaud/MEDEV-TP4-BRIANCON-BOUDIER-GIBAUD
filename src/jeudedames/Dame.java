@@ -9,6 +9,6 @@ package jeudedames;
  *
  * @author Quentin GIBAUD
  */
-public abstract class Pion {
+public class Dame extends Pion{
     
 }
