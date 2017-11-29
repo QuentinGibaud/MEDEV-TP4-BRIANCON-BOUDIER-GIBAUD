@@ -5,11 +5,14 @@
  */
 package jeudedames;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Quentin GIBAUD
  */
 public class Joueur {
+
     //Attributs 
     private String nom;
 
@@ -20,5 +23,13 @@ public class Joueur {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    //Constructeur
+    public Joueur() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Entrez le nom du joueur : ");
+        String nomJoueur = scan.next();
+        this.nom = nomJoueur;
     }
 }

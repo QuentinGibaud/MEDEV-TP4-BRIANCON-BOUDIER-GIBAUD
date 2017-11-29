@@ -19,6 +19,12 @@ public class Plateau {
     private Case[][] plateau;
     private ArrayList<Pion> pions;
 
+    //Constructeurs
+    public Plateau() {
+        this.joueurs = new ArrayList<>();
+        this.pions = new ArrayList<>();
+    }
+
     //Getters and setters
     public ArrayList<Joueur> getJoueurs() {
         return joueurs;
