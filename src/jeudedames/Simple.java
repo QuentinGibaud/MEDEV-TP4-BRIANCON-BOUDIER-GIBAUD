@@ -6,8 +6,9 @@
 package jeudedames;
 
 /**
+
  * Classe Simple représentant le pion de base
- * @author Quentin GIBAUD
+ * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class Simple extends Pion{
 

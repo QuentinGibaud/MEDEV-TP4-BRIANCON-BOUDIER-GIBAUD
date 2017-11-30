@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Quentin GIBAUD
+ * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class Point2DTest {
     

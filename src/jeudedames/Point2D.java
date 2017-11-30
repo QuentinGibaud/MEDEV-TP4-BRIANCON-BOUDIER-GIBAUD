@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Quentin GIBAUD
+ * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class Point2D {
 
@@ -137,13 +137,13 @@ public class Point2D {
         return bool;
     }
 
-    
+
         
     /**
-     * Détermine si le Point2D est inclus dans les limites d'un monde donné
+     * Détermine si le Point2D est inclus dans les limites d'un plateau
      * 
      * @param p
-     * @return true si le Point2D est dans les limites du monde, false sinon.
+     * @return true si le Point2D est dans les limites du plateau, false sinon.
      */
     public boolean isPositionIn(Plateau p){
         boolean res = true;
