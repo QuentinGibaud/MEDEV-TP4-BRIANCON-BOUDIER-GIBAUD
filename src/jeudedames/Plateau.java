@@ -32,12 +32,14 @@ public class Plateau {
 
     /**
      * Constructeur du plateau qui génère deux joueurs
+     * @param nom1
+     * @param nom2
      */
-    public Plateau() {
+    public Plateau(String nom1, String nom2) {
         System.out.println("Création du joueur blanc : ");
-        this.joueurBlanc = new Joueur();
+        this.joueurBlanc = new Joueur(nom1);
         System.out.println("Création du joueur noir : ");
-        this.joueurNoir = new Joueur();
+        this.joueurNoir = new Joueur(nom2);
     }
 
     /**

@@ -41,10 +41,8 @@ public class Joueur {
      * Constructeur par défaut de Joueur 
      * demande le nom à l'utilisateur
      */
-    public Joueur() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Entrez le nom du joueur : ");
-        String nomJoueur = scan.next();
+    public Joueur(String nomJoueur) {
+        
         this.nom = nomJoueur;
         this.pions = new ArrayList<Pion>();
     }

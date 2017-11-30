@@ -38,8 +38,7 @@ public class PlateauTest {
     @Test
     public void testInitialisePlateau() throws FileNotFoundException {
         System.out.println("initialisePlateau");
-        System.setIn(new FileInputStream("TestJoueur.txt"));
-        Plateau instance = new Plateau();
+        Plateau instance = new Plateau("Sacha","Justine");
         instance.initialisePlateau();
         ArrayList<Pion> pionNoir = instance.getJoueurNoir().getPions();
         ArrayList<Pion> pionBlanc = instance.getJoueurBlanc().getPions();

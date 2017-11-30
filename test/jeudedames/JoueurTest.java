@@ -38,8 +38,7 @@ public class JoueurTest {
     @Test
     public void testJoueur() throws FileNotFoundException, IOException {
         System.out.println("constructeur");
-        System.setIn(new FileInputStream("TestJoueur.txt"));
-        Joueur instance = new Joueur();
+        Joueur instance = new Joueur("Sacha");
         assertTrue(instance.getPions().isEmpty());
         assertEquals("Sacha",instance.getNom());
     }
