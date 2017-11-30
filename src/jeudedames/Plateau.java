@@ -146,7 +146,7 @@ public class Plateau {
         else{
             System.err.println("Type du joueur incorrect. Valeurs possibles : Blanc, Noir.");
         }
-        
+        return deplacements;
     }
     
     /**
