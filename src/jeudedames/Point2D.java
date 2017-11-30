@@ -146,7 +146,6 @@ public class Point2D {
         return bool;
     }
 
-
         
     /**
      * Détermine si le Point2D est inclus dans les limites d'un plateau
