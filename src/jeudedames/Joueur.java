@@ -9,26 +9,38 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * Classe Joueur : stocke les informations concernant les joueurs : nom et liste de pions
  * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class Joueur {
 
-    //Attributs 
+    /**
+     * Attributs : nom et liste de pions
+     */
     private String nom;
     
     private ArrayList<Pion> pions ;
 
-    //Getter and setter
+    /**
+     * Getter de l'attribut nom
+     * @return le nom du joueur
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Setter de l'attribut nom
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    //Constructeur
+    /**
+     * Constructeur par défaut de Joueur 
+     * demande le nom à l'utilisateur
+     */
     public Joueur() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Entrez le nom du joueur : ");
@@ -37,10 +49,18 @@ public class Joueur {
         this.pions = new ArrayList<Pion>();
     }
 
+    /**
+     * Getter de l'attribut pions
+     * @return la liste des pions du joueur
+     */
     public ArrayList<Pion> getPions() {
         return pions;
     }
 
+    /**
+     * Setter de l'attribut pions
+     * @param pions
+     */
     public void setPions(ArrayList<Pion> pions) {
         this.pions = pions;
     }

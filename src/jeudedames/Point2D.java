@@ -8,11 +8,15 @@ package jeudedames;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe Point2D : permet de connaitre la position des pions et de les déplacer
  * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class Point2D {
 
+    /**
+     * Attributs
+     */
+    
     //abscisse du point
     private int x;
 
@@ -20,7 +24,7 @@ public class Point2D {
     private int y;
 
     /**
-     *
+     * Getter de l'abscisse x
      * @return x
      */
     public int getX() {
@@ -28,7 +32,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * Getter de l'ordonnée y
      * @return y
      */
     public int getY() {
@@ -36,7 +40,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * Setter de l'abscisse x
      * @param x
      */
     public void setX(int x) {
@@ -44,7 +48,7 @@ public class Point2D {
     }
 
     /**
-     *
+     * Setter de l'ordonnée y
      * @param y
      */
     public void setY(int y) {
@@ -62,8 +66,8 @@ public class Point2D {
     /**
      * Constructeur à partir de 2 paramètres
      *
-     * @param x
-     * @param y
+     * @param x abscisse
+     * @param y ordonnée
      */
     public Point2D(int x, int y) {
         this.x = x;
@@ -71,7 +75,7 @@ public class Point2D {
     }
 
     /**
-     * Constructeur à partir d'un autre point
+     * Constructeur à partir d'un autre point : constructeur de recopie
      *
      * @param p
      */
@@ -125,6 +129,11 @@ public class Point2D {
         return Math.max(Math.abs(x-p.x), Math.abs(y-p.y));
     }
 
+    /**
+     * Test si deux points sont identiques
+     * @param p
+     * @return
+     */
     public boolean equalsTo(Point2D p) {
         boolean bool = false;
 

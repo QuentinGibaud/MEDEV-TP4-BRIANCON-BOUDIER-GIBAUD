@@ -6,7 +6,7 @@
 package jeudedames;
 
 /**
- *
+ * Classe Pion : classe abstraite mère de Simple et Dame
  * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public abstract class Pion {
@@ -32,7 +32,7 @@ public abstract class Pion {
     }
 
     /**
-     * getter position
+     * Getter position
      * @return position
      */
     public Point2D getPos() {
@@ -40,7 +40,7 @@ public abstract class Pion {
     }
 
     /**
-     * setter position
+     * Setter position
      * @param pos nouvelle position voulue
      */
     public void setPos(Point2D pos) {
