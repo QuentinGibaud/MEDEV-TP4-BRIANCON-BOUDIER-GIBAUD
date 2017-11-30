@@ -15,35 +15,40 @@ public class Plateau {
     //Gére les pions, les cases et les joueurs
     
     //Attributs
-    private ArrayList<Joueur> joueurs ;
-    private ArrayList<Pion> pionsBlanc;
-    private ArrayList<Pion> pionsNoir ;
+    private Joueur joueurBlanc ;
+    private Joueur joueurNoir ;
+    
     private static final int TAILLE = 10;
 
     //Constructeurs
     public Plateau() {
-        this.joueurs = new ArrayList<>();
-        this.pions = new ArrayList<>();
+        System.out.println("Création du joueur blanc : ");
+        this.joueurBlanc = new Joueur();
+        System.out.println("Création du joueur noir : ");
+        this.joueurNoir = new Joueur();
     }
 
-    //Getters and setters
-    public ArrayList<Joueur> getJoueurs() {
-        return joueurs;
+    public Joueur getJoueurBlanc() {
+        return joueurBlanc;
     }
 
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
-        this.joueurs = joueurs;
+    public void setJoueurBlanc(Joueur joueurBlanc) {
+        this.joueurBlanc = joueurBlanc;
     }
+
+    public Joueur getJoueurNoir() {
+        return joueurNoir;
+    }
+
+    public void setJoueurNoir(Joueur joueurNoir) {
+        this.joueurNoir = joueurNoir;
+    }
+
+
 
     public static int getTAILLE() {
         return TAILLE;
     }
 
-    public ArrayList<Pion> getPions() {
-        return pions;
-    }
-
-    public void setPions(ArrayList<Pion> pions) {
-        this.pions = pions;
-    }
+    
 }

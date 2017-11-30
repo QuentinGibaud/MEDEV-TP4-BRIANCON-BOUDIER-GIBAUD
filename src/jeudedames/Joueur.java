@@ -5,6 +5,7 @@
  */
 package jeudedames;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,6 +16,8 @@ public class Joueur {
 
     //Attributs 
     private String nom;
+    
+    private ArrayList<Pion> pions ;
 
     //Getter and setter
     public String getNom() {
@@ -31,5 +34,14 @@ public class Joueur {
         System.out.println("Entrez le nom du joueur : ");
         String nomJoueur = scan.next();
         this.nom = nomJoueur;
+        this.pions = new ArrayList<Pion>();
+    }
+
+    public ArrayList<Pion> getPions() {
+        return pions;
+    }
+
+    public void setPions(ArrayList<Pion> pions) {
+        this.pions = pions;
     }
 }
