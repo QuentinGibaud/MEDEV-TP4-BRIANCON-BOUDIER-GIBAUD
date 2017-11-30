@@ -118,16 +118,11 @@ public class Point2D {
     /**
      * Calcule la distance du point par rapport à un autre point
      *
-     * @param P
+     * @param p
      * @return dist
      */
-    public double distance(Point2D P) {
-        int xc = this.getX();
-        int yc = this.getY();
-        int xp = P.getX();
-        int yp = P.getY();
-
-        return Math.sqrt(Math.pow((xc - xp), 2) + Math.pow((yc - yp), 2));
+    public double distance(Point2D p) {
+        return Math.max(Math.abs(x-p.x), Math.abs(y-p.y));
     }
 
     public boolean equalsTo(Point2D p) {
@@ -142,24 +137,7 @@ public class Point2D {
         return bool;
     }
 
-    /**
-     * Teste la superposition d'un Point2D donné avec d'autres
-     *
-     * @param p
-     * @return true si superposition avec un
-     */
-    public boolean superpositionCreatures(Plateau p) {
-        boolean superposition = false;
-
-        for (Pion pion : p.getPions()){
-            if (this.distance(pion.getPos()) == 0) {
-                superposition = true;
-                break;
-            }
-        }
-
-        return superposition;
-    }
+    
         
     /**
      * Détermine si le Point2D est inclus dans les limites d'un monde donné

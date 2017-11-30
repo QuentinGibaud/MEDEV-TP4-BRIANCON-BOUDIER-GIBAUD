@@ -11,13 +11,38 @@ package jeudedames;
  */
 public abstract class Pion {
     
-    //Attributs
+    /**
+     * attribut de la position
+     */
     private Point2D pos;
 
+    /**
+     * Constructeur d'un pion selon la position voulue
+     * @param pos
+     */
+    public Pion(Point2D pos) {
+        this.pos = pos;
+    }
+    
+    /**
+     * Constructeur d'un pion par défaut
+     */
+    public Pion(){
+        this.pos = new Point2D();
+    }
+
+    /**
+     * getter position
+     * @return position
+     */
     public Point2D getPos() {
         return pos;
     }
 
+    /**
+     * setter position
+     * @param pos nouvelle position voulue
+     */
     public void setPos(Point2D pos) {
         this.pos = pos;
     }
