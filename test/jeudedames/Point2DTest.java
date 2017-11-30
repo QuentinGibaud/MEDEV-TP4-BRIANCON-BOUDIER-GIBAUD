@@ -114,9 +114,9 @@ public class Point2DTest {
         System.out.println("distance");
         Point2D P = new Point2D(4,3);
         Point2D instance = new Point2D();
-        double expResult = 5.0;
+        double expResult = 4.0;
         double result = instance.distance(P);
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result, 4.0);
     }
 
     /**
