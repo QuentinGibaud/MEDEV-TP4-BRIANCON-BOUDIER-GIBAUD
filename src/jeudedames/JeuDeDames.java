@@ -5,9 +5,11 @@
  */
 package jeudedames;
 
+import java.util.Scanner;
+
 /**
  *
- * @author Quentin GIBAUD
+ * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class JeuDeDames {
 
@@ -19,9 +21,13 @@ public class JeuDeDames {
         System.out.println("-----------------------------------------------");
         System.out.println("-----Bienvenue dans notre jeu de dames !!!-----");
         System.out.println("-----------------------------------------------");
-        
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Entrez le nom du joueur blanc : ");
+        String nom1 = scan.next();
+        System.out.println("Entrez le nom du joueur noir : ");
+        String nom2 = scan.next();
         //Création du plateau
-        Plateau plateau = new Plateau();
+        Plateau plateau = new Plateau(nom1,nom2);
         
         
         

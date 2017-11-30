@@ -5,6 +5,10 @@
  */
 package jeudedames;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,30 +32,16 @@ public class JoueurTest {
     }
 
     /**
-     * Test of getNom method, of class Joueur.
+     * Test of constructor of class Joueur.
+     * @throws java.io.FileNotFoundException
      */
     @Test
-    public void testGetNom() {
-        System.out.println("getNom");
-        Joueur instance = new Joueur();
-        String expResult = "";
-        String result = instance.getNom();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testJoueur() throws FileNotFoundException, IOException {
+        System.out.println("constructeur");
+        Joueur instance = new Joueur("Sacha");
+        assertTrue(instance.getPions().isEmpty());
+        assertEquals("Sacha",instance.getNom());
     }
 
-    /**
-     * Test of setNom method, of class Joueur.
-     */
-    @Test
-    public void testSetNom() {
-        System.out.println("setNom");
-        String nom = "";
-        Joueur instance = new Joueur();
-        instance.setNom(nom);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }
