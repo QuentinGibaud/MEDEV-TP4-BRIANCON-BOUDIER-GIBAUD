@@ -7,7 +7,7 @@ package jeudedames;
 
 /**
  *
- * @author Quentin GIBAUD
+ * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class JeuDeDames {
 

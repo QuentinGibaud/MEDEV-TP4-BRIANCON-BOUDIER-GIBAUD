@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Quentin GIBAUD
+ * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class Point2D {
 
@@ -142,30 +142,12 @@ public class Point2D {
         return bool;
     }
 
-    /**
-     * Teste la superposition d'un Point2D donné avec d'autres
-     *
-     * @param p
-     * @return true si superposition avec un
-     */
-    public boolean superpositionCreatures(Plateau p) {
-        boolean superposition = false;
-
-        for (Pion pion : p.getPions()){
-            if (this.distance(pion.getPos()) == 0) {
-                superposition = true;
-                break;
-            }
-        }
-
-        return superposition;
-    }
         
     /**
-     * Détermine si le Point2D est inclus dans les limites d'un monde donné
+     * Détermine si le Point2D est inclus dans les limites d'un plateau
      * 
      * @param p
-     * @return true si le Point2D est dans les limites du monde, false sinon.
+     * @return true si le Point2D est dans les limites du plateau, false sinon.
      */
     public boolean isPositionIn(Plateau p){
         boolean res = true;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Quentin GIBAUD
+ * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
  */
 public class Plateau {
     //Gére les pions, les cases et les joueurs
