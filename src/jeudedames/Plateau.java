@@ -16,7 +16,8 @@ public class Plateau {
     
     //Attributs
     private ArrayList<Joueur> joueurs ;
-    private ArrayList<Pion> pions;
+    private ArrayList<Pion> pionsBlanc;
+    private ArrayList<Pion> pionsNoir ;
     private static final int TAILLE = 10;
 
     //Constructeurs
