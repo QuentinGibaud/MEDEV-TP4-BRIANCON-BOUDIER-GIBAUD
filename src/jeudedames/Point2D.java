@@ -134,7 +134,7 @@ public class Point2D {
      * @param p
      * @return
      */
-    public boolean equalsTo(Point2D p) {
+    public boolean equals(Point2D p) {
         boolean bool = false;
 
         if (p != null) {

@@ -47,5 +47,15 @@ public abstract class Pion {
         this.pos = pos;
     }
     
+    /**
+     * equals : teste si deux pions ont la même position
+     */
+    public boolean equals(Pion p){
+        if(this.getPos().equals(p.getPos())){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
 }

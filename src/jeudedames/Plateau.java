@@ -36,9 +36,9 @@ public class Plateau {
      * @param nom2
      */
     public Plateau(String nom1, String nom2) {
-        System.out.println("Création du joueur blanc : ");
+        System.out.println("Création du joueur blanc");
         this.joueurBlanc = new Joueur(nom1);
-        System.out.println("Création du joueur noir : ");
+        System.out.println("Création du joueur noir");
         this.joueurNoir = new Joueur(nom2);
     }
 
