@@ -142,24 +142,6 @@ public class Point2D {
         return bool;
     }
 
-    /**
-     * Teste la superposition d'un Point2D donné avec d'autres
-     *
-     * @param p
-     * @return true si superposition avec un
-     */
-    public boolean superpositionCreatures(Plateau p) {
-        boolean superposition = false;
-
-        for (Pion pion : p.getPions()){
-            if (this.distance(pion.getPos()) == 0) {
-                superposition = true;
-                break;
-            }
-        }
-
-        return superposition;
-    }
         
     /**
      * Détermine si le Point2D est inclus dans les limites d'un monde donné
