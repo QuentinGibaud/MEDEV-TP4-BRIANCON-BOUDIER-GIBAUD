@@ -16,8 +16,8 @@ public class Plateau {
     
     //Attributs
     private ArrayList<Joueur> joueurs ;
-    private Case[][] plateau;
     private ArrayList<Pion> pions;
+    private static final int TAILLE = 10;
 
     //Constructeurs
     public Plateau() {
@@ -34,12 +34,8 @@ public class Plateau {
         this.joueurs = joueurs;
     }
 
-    public Case[][] getPlateau() {
-        return plateau;
-    }
-
-    public void setPlateau(Case[][] plateau) {
-        this.plateau = plateau;
+    public static int getTAILLE() {
+        return TAILLE;
     }
 
     public ArrayList<Pion> getPions() {
