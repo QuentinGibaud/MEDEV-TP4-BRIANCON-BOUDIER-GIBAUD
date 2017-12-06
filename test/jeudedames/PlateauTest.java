@@ -52,7 +52,7 @@ public class PlateauTest {
         Simple pion7 = new Simple(new Point2D(8,1));
         Simple pion8 = new Simple(new Point2D(9,8));
         boolean expResult = true;
-        boolean result = pionBlanc.contains(pion1);
+        boolean result = pionNoir.contains(pion1);
         assertEquals(expResult,result);
         assertTrue(pionNoir.contains(pion1));
         assertTrue(pionNoir.contains(pion2));
