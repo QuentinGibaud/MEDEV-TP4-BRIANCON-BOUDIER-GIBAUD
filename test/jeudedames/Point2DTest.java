@@ -124,12 +124,23 @@ public class Point2DTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equalsTo");
+        System.out.println("equals");
         Point2D p = new Point2D();
         Point2D instance = new Point2D(0,4);
         boolean expResult = false;
         boolean result = instance.equals(p);
         assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of hashCode method, of class Point2D
+     */
+    @Test
+    public void testHashCode(){
+        System.out.println("hashCode");
+        Point2D p = new Point2D(2,3);
+        int res = p.hashCode();
+        assertEquals(1212,res);
     }
 
     /**
