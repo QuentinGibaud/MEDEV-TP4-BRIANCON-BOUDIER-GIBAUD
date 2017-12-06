@@ -159,6 +159,10 @@ public class Point2D {
         return res;
     }
 
+    /**
+     * Définit des équivalents en nombre des informations contenues dans le point
+     * @return equivalent
+     */
     @Override
     public int hashCode() {
         int hash = 7;
