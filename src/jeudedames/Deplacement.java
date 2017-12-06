@@ -6,6 +6,7 @@
 package jeudedames;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Classe représentant un déplacement avec les positions et les pions mangés.
@@ -35,8 +36,8 @@ class Deplacement {
      */
     public Deplacement(ArrayList<Pion> pionManges, Point2D posInit, Point2D posFinale) {
         this.pionManges = pionManges;
-        this.posInit = posInit;
-        this.posFinale = posFinale;
+        this.posInit = new Point2D(posInit);
+        this.posFinale = new Point2D(posFinale);
     }
 
     /**
@@ -84,4 +85,45 @@ class Deplacement {
     }
     
     
+    /**
+     * Test si un objet et le déplacement sont identiques
+     * @param obj
+     * @return 
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if((obj == null) || !(obj instanceof Deplacement)){
+            return false;
+        }
+        else{
+            Deplacement dep = (Deplacement)obj;
+            if(dep.pionManges.size()==this.pionManges.size()){
+                for(Pion p : this.pionManges){
+                    if (dep.pionManges.contains(p) == false) {
+                        return false;
+                    }
+                }
+            }
+            else{
+                return false;
+            }
+            if(dep.posFinale.equals(this.posFinale) == false){
+                return false;
+            }
+            if(dep.posInit.equals(this.posInit) == false){
+                return false;
+            } 
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.pionManges);
+        hash = 83 * hash + Objects.hashCode(this.posInit);
+        hash = 83 * hash + Objects.hashCode(this.posFinale);
+        return hash;
+    }
 }
