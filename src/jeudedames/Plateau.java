@@ -139,12 +139,43 @@ public class Plateau {
         
         if(typeJoueur.equalsIgnoreCase("BLANC")){
             for(Pion p: this.joueurBlanc.getPions()){
-                deplacements = this.trouverDeplacementPion("Blanc", this.joueurNoir.getPions(), p, true);
+                ArrayList<Deplacement> dep = this.trouverDeplacementPion("Blanc", this.joueurNoir.getPions(), p, true);
+                if(!(dep.isEmpty())){
+                    if(!(deplacements.isEmpty())){
+                        int tempSize = dep.get(0).getPionManges().size();
+                        int size = deplacements.get(0).getPionManges().size();
+                        if(tempSize > size){
+                            deplacements = dep;
+                        }
+                        else if(tempSize == size){
+                            deplacements.addAll(dep);
+                        }
+                    }
+                    else{
+                        deplacements = dep;
+                    }
+                }
+                
             }
         }
         else if(typeJoueur.equalsIgnoreCase("NOIR")){
             for(Pion p: this.joueurNoir.getPions()){
-                deplacements = this.trouverDeplacementPion("Noir", this.joueurBlanc.getPions(), p, true);
+                ArrayList<Deplacement> dep = this.trouverDeplacementPion("Noir", this.joueurBlanc.getPions(), p, true);
+                if(!(dep.isEmpty())){
+                    if(!(deplacements.isEmpty())){
+                        int tempSize = dep.get(0).getPionManges().size();
+                        int size = deplacements.get(0).getPionManges().size();
+                        if(tempSize > size){
+                            deplacements = dep;
+                        }
+                        else if(tempSize == size){
+                            deplacements.addAll(dep);
+                        }
+                    }
+                    else{
+                        deplacements = dep;
+                    }
+                }
             }
         }
         else{

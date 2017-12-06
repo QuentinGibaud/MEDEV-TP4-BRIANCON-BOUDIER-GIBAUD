@@ -109,7 +109,7 @@ public class PlateauTest {
         pionsManges2.add(pionB6);
         pionsManges2.add(pionB8);
         Deplacement dep2 = new Deplacement(pionsManges2, pionN1.getPos(), new Point2D(9, 9));
-        ArrayList<Deplacement> depsNoirs = instance.trouverDeplacementPion("Noir", pionsBlancs, pionN1, true);
+        ArrayList<Deplacement> depsNoirs = instance.trouverDeplacements("Noir");
         assertTrue(depsNoirs.size()==2);
         assertTrue(depsNoirs.contains(dep1));
         assertTrue(depsNoirs.contains(dep2));
