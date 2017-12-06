@@ -40,9 +40,10 @@ public class PlateauTest {
         System.out.println("initialisePlateau");
         Plateau instance = new Plateau("Sacha","Justine");
         instance.initialisePlateau();
-        ArrayList<Pion> pionNoir = instance.getJoueurNoir().getPions();
+        ArrayList<Pion> pionNoir = new ArrayList<Pion>();
+        pionNoir = instance.getJoueurNoir().getPions();
         ArrayList<Pion> pionBlanc = instance.getJoueurBlanc().getPions();
-        Simple pion1 =new Simple(new Point2D(0,3));
+        Simple pion1 = new Simple(new Point2D(0,3));
         Simple pion2 = new Simple(new Point2D(1,6));
         Simple pion3 = new Simple(new Point2D(2,1));
         Simple pion4 = new Simple(new Point2D(3,8));
@@ -50,6 +51,9 @@ public class PlateauTest {
         Simple pion6 = new Simple(new Point2D(7,6));
         Simple pion7 = new Simple(new Point2D(8,1));
         Simple pion8 = new Simple(new Point2D(9,8));
+        boolean expResult = true;
+        boolean result = pionBlanc.contains(pion1);
+        assertEquals(expResult,result);
         assertTrue(pionNoir.contains(pion1));
         assertTrue(pionNoir.contains(pion2));
         assertTrue(pionNoir.contains(pion3));
