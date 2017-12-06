@@ -118,6 +118,19 @@ public class Point2D {
 
         return this;
     }
+    
+    /**
+     * Modifie les 2 coordonnées d'un Point2D
+     *
+     * @param pos
+     * @return Le Point2D dont les coordonnées ont été modifiées
+     */
+    public Point2D setPosition(Point2D pos) {
+        this.x = pos.getX();
+        this.y = pos.getY();
+        
+        return this;
+    }
 
     /**
      * Calcule la distance du point par rapport à un autre point
@@ -128,24 +141,31 @@ public class Point2D {
     public double distance(Point2D p) {
         return Math.max(Math.abs(x-p.x), Math.abs(y-p.y));
     }
+    
 
     /**
-     * Test si deux points sont identiques
-     * @param p
-     * @return
+     * Vérifie l'égalité entre un objet et le Point2D.
+     * @param obj Objet à comparer
+     * @return True si égalité et false sinon
      */
-    public boolean equals(Point2D p) {
-        boolean bool = false;
-
-        if (p != null) {
-            if (this.x == p.getX() && this.y == p.getY()) {
-                bool = true;
+    @Override
+    public boolean equals(Object obj) {
+        boolean res = false;
+        if((obj != null) && (obj instanceof Point2D)){
+            if(this.x == ((Point2D)obj).x && this.y == ((Point2D)obj).y){
+                res = true;
             }
         }
-
-        return bool;
+        return res;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + this.x;
+        hash = 13 * hash + this.y;
+        return hash;
+    }
         
     /**
      * Détermine si le Point2D est inclus dans les limites d'un plateau
