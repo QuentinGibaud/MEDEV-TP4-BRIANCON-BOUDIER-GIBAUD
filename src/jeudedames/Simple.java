@@ -12,6 +12,17 @@ package jeudedames;
  */
 public class Simple extends Pion{
 
+    
+    /**
+     * Constructeur d'un simple selon les coordonnées voulues
+     * @param x Abscisse
+     * @param y Ordonnée
+     */
+    public Simple(int x, int y) {
+        super(x, y);
+    }
+    
+    
     /**
      * Constructeur avec la position voulue
      * @param pos
