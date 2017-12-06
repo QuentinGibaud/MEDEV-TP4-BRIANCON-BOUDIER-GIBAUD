@@ -5,6 +5,8 @@
  */
 package jeudedames;
 
+import java.util.Objects;
+
 /**
  * Classe Pion : classe abstraite mère de Simple et Dame
  * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
@@ -17,11 +19,20 @@ public abstract class Pion {
     private Point2D pos;
 
     /**
+     * Constructeur d'un pion selon les coordonnées voulues
+     * @param x Abscisse
+     * @param y Ordonnée
+     */
+    public Pion(int x, int y) {
+        this.pos = new Point2D(x, y);
+    }
+    
+    /**
      * Constructeur d'un pion selon la position voulue
      * @param pos
      */
     public Pion(Point2D pos) {
-        this.pos = pos;
+        this.pos = new Point2D(pos);
     }
     
     /**
@@ -48,14 +59,24 @@ public abstract class Pion {
     }
     
     /**
-     * equals : teste si deux pions ont la même position
+     * equals : teste si un objet et le pion sont identiques
+     * @param obj
+     * @return 
      */
-    public boolean equals(Pion p){
-        if(this.getPos().equals(p.getPos())){
-            return true;
-        }else{
-            return false;
+    @Override
+    public boolean equals(Object obj){
+        boolean res = false;
+        if((obj!=null) && (obj instanceof Pion)){
+            res = this.getPos().equals(((Pion)obj).getPos());
         }
+        return res;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.pos);
+        return hash;
     }
     
 }
