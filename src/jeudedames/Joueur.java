@@ -6,7 +6,8 @@
 package jeudedames;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
+
 
 /**
  * Classe Joueur : stocke les informations concernant les joueurs : nom et liste de pions
@@ -19,7 +20,7 @@ public class Joueur {
      */
     private String nom;
     
-    private ArrayList<Pion> pions ;
+    private List<Pion> pions ;
 
     /**
      * Getter de l'attribut nom
@@ -40,18 +41,19 @@ public class Joueur {
     /**
      * Constructeur par défaut de Joueur 
      * demande le nom à l'utilisateur
+     * @param nomJoueur
      */
     public Joueur(String nomJoueur) {
         
         this.nom = nomJoueur;
-        this.pions = new ArrayList<Pion>();
+        this.pions = new ArrayList<>();
     }
 
     /**
      * Getter de l'attribut pions
      * @return la liste des pions du joueur
      */
-    public ArrayList<Pion> getPions() {
+    public List<Pion> getPions() {
         return pions;
     }
 
@@ -59,7 +61,7 @@ public class Joueur {
      * Setter de l'attribut pions
      * @param pions
      */
-    public void setPions(ArrayList<Pion> pions) {
+    public void setPions(List<Pion> pions) {
         this.pions = pions;
     }
 }

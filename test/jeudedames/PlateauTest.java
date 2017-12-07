@@ -96,13 +96,13 @@ public class PlateauTest {
         Simple pionB8 = new Simple(8, 8);
         pionsBlancs.add(pionB8);
         
-        ArrayList<Pion> pionsManges1= new ArrayList<>();
+        List<Pion> pionsManges1= new ArrayList<>();
         pionsManges1.add(pionB4);
         pionsManges1.add(pionB5);
         pionsManges1.add(pionB6);
         pionsManges1.add(pionB7);
         Deplacement dep1 = new Deplacement(pionsManges1, pionN1.getPos(), new Point2D(5, 5));
-        ArrayList<Pion> pionsManges2 = new ArrayList<>();
+        List<Pion> pionsManges2 = new ArrayList<>();
         pionsManges2.add(pionB4);
         pionsManges2.add(pionB5);
         pionsManges2.add(pionB6);

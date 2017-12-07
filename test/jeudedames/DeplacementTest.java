@@ -28,12 +28,15 @@ public class DeplacementTest {
     public static void tearDownClass() {
     }
 
-    
-
-   
-
-    
-
-    
+    /**
+     * Test of hashCode method, of class Deplacement
+     */
+    @Test
+    public void testHashCode(){
+        System.out.println("hashCode");
+        Deplacement d = new Deplacement();
+        int res = d.hashCode();
+        assertEquals(2965196,res);
+    }
     
 }
