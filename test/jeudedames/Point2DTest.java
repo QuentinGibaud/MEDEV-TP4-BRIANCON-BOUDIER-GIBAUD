@@ -125,11 +125,15 @@ public class Point2DTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Point2D p = new Point2D();
+        Point2D p0 = null;
+        Point2D p1 = new Point2D();
+        Point2D p2 = new Point2D(0,4);
+        Simple p3 = new Simple();
         Point2D instance = new Point2D(0,4);
-        boolean expResult = false;
-        boolean result = instance.equals(p);
-        assertEquals(expResult, result);
+        assertFalse(instance.equals(p0));
+        assertFalse(instance.equals(p1));
+        assertTrue(instance.equals(p2));
+        assertFalse(instance.equals(p3));
     }
     
     /**
@@ -153,9 +157,15 @@ public class Point2DTest {
         Point2D ptIn = new Point2D(2,6);
         Point2D ptOut1 = new Point2D(11,7);
         Point2D ptOut2 = new Point2D(6,12);
+        Point2D ptOut3 = new Point2D(13,18);
+        Point2D ptOut4 = new Point2D(-4,2);
+        Point2D ptOut5 = new Point2D(2,-2);
         assertTrue(ptIn.isPositionIn(p));
         assertFalse(ptOut1.isPositionIn(p));
         assertFalse(ptOut2.isPositionIn(p));
+        assertFalse(ptOut3.isPositionIn(p));
+        assertFalse(ptOut4.isPositionIn(p));
+        assertFalse(ptOut5.isPositionIn(p));
     }
 
     
