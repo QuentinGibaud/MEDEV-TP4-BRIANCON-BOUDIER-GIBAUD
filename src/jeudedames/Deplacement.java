@@ -93,30 +93,31 @@ class Deplacement {
      */
     @Override
     public boolean equals(Object obj) {
+        boolean res = true;
         if((obj == null) || !(obj instanceof Deplacement)){
-            return false;
+            res = false;
         }
         else{
             Deplacement dep = (Deplacement)obj;
             if(dep.pionManges.size()==this.pionManges.size()){
                 for(Pion p : this.pionManges){
-                    if (dep.pionManges.contains(p) == false) {
-                        return false;
+                    if (!dep.pionManges.contains(p)) {
+                        res = false;
                     }
                 }
             }
             else{
-                return false;
+                res = false;
             }
-            if(dep.posFinale.equals(this.posFinale) == false){
-                return false;
+            if(!dep.posFinale.equals(this.posFinale)){
+                res = false;
             }
-            if(dep.posInit.equals(this.posInit) == false){
-                return false;
+            if(!dep.posInit.equals(this.posInit)){
+                res = false;
             } 
         }
 
-        return true;
+        return res;
     }
 
     @Override
