@@ -168,5 +168,13 @@ public class Point2DTest {
         assertFalse(ptOut5.isPositionIn(p));
     }
 
-    
+    /**
+     * Test of affiche method, of class Point2D
+     */
+    @Test
+    public void testAffiche(){
+        System.out.println("affiche");
+        Point2D p = new Point2D();
+        p.affiche();
+    }
 }
