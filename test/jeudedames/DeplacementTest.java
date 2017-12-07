@@ -48,7 +48,7 @@ public class DeplacementTest {
         Deplacement p = new Deplacement();
         Simple s = new Simple();
         assertTrue(d.equals(p));
-        assertTrue(d.equals(s));
+        assertFalse(d.equals(((Object)s)));
         p = null;
         assertFalse(d.equals(p));
     }
