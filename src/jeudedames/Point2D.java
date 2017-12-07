@@ -5,8 +5,6 @@
  */
 package jeudedames;
 
-import java.util.ArrayList;
-
 /**
  * Classe Point2D : permet de connaitre la position des pions et de les déplacer
  * @author Quentin GIBAUD, Yann BRIANCON, Justine BOUDIER
