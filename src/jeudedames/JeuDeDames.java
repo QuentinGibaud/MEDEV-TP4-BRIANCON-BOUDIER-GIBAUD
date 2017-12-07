@@ -28,7 +28,8 @@ public class JeuDeDames {
         String nom2 = scan.next();
         //Création du plateau
         Plateau plateau = new Plateau(nom1,nom2);
-        
+        plateau.initialisePlateau();
+        plateau.affichagePlateau();
         
         
     }

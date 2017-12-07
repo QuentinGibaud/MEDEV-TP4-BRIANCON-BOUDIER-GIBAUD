@@ -28,8 +28,8 @@ public class Plateau {
      * taille du plateau
      */
     private static final int TAILLE = 10;
-
     
+       
 
     /**
      * Constructeur du plateau qui génère deux joueurs
@@ -348,5 +348,31 @@ public class Plateau {
         }
         
         return tabDeplacmt;
+    }
+    
+    public void affichagePlateau(){
+        List<Pion> pionNoir = joueurNoir.getPions();
+        List<Pion> pionBlanc = joueurBlanc.getPions();
+        String[][] occupation = new String[10][10]; 
+        
+        for (int i =0;i<10;i++){
+            for (int j=0;j<10;j++){
+                occupation[i][j]="_ ";
+            }
+        }
+        
+        for (Pion p:pionNoir){
+            occupation[p.getPos().getX()][p.getPos().getY()]="N ";
+        }
+        for (Pion p:pionBlanc){
+            occupation[p.getPos().getX()][p.getPos().getY()]="B ";
+        }
+        
+        for (int i =0;i<10;i++){
+            for (int j=0;j<10;j++){
+                System.out.print(occupation[i][j]);
+            }
+            System.out.println("");
+        }
     }
 }
