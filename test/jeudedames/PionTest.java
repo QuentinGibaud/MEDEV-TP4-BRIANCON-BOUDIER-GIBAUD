@@ -46,6 +46,17 @@ public class PionTest {
         boolean result2 = p.equals(p2);
         assertEquals(expRes,result2);
     }
+    
+    /**
+     * Test of hashCode method, of class Pion
+     */
+    @Test
+    public void testHashCode(){
+        System.out.println("hashCode");
+        int expResult = 0;
+        Simple p = new Simple(2,3);
+        assertEquals(1417,p.hashCode());
+    }
 
     
     
