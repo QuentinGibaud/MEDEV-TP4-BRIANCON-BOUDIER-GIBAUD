@@ -113,8 +113,7 @@ public class Plateau {
     public boolean verifierPosLibre(Point2D pos){
         boolean res = true;
         
-        if( pos.getX()<0 || pos.getX()>=10 ||
-            pos.getY()<0 || pos.getY()>=10){
+        if( pos.getX()<0 || pos.getX()>=10 || pos.getY()<0 || pos.getY()>=10){
             res = false;
         }
         if(res){
@@ -147,8 +146,7 @@ public class Plateau {
     public boolean verifierPosLibre(Point2D pos, List<Pion> pions1, List<Pion> pions2){
         boolean res = true;
         
-        if( pos.getX()<0 || pos.getX()>=10 ||
-            pos.getY()<0 || pos.getY()>=10){
+        if( pos.getX()<0 || pos.getX()>=10 || pos.getY()<0 || pos.getY()>=10){
             res = false;
         }
         if(res){
@@ -173,6 +171,41 @@ public class Plateau {
 
     /**
      * 
+     * @param typeJoueur
+     * @param p
+     * @param deplacements
+     * @param listRepas
+     * @return Liste des déplacements possibles
+     */
+    public List<Deplacement> concatDeplacements(String typeJoueur, Pion p, List<Deplacement> deplacements, List<Deplacement> listRepas){
+        if(!(listRepas.isEmpty())){
+            if(!(deplacements.isEmpty())){
+                int tempSize = listRepas.get(0).getPionManges().size();
+                int size = deplacements.get(0).getPionManges().size();
+                if(tempSize > size){
+                    deplacements = listRepas;
+                }
+                else if(tempSize == size){
+                    deplacements.addAll(listRepas);
+                }
+            }
+            else{
+                deplacements = listRepas;
+            }
+        }
+        else {
+            if (deplacements.isEmpty()){
+                deplacements = trouverDeplacementsSimples(typeJoueur, p);
+            }
+            else if(deplacements.get(0).getPionManges().isEmpty()){
+                deplacements.addAll(trouverDeplacementsSimples(typeJoueur, p));
+            }
+        }
+        
+        return deplacements;
+    }
+    /**
+     * 
      * @param typeJoueur Type du joueur (Blanc ou Noir)
      * @return Liste des déplacements possibles
      */
@@ -185,30 +218,7 @@ public class Plateau {
                 pionsAmisHorsActuel.remove(p);
                 List<Deplacement> listRepas = this.trouverRepasPion(
                         "Blanc", pionsAmisHorsActuel, this.joueurNoir.getPions(), p);
-                if(!(listRepas.isEmpty())){
-                    if(!(deplacements.isEmpty())){
-                        int tempSize = listRepas.get(0).getPionManges().size();
-                        int size = deplacements.get(0).getPionManges().size();
-                        if(tempSize > size){
-                            deplacements = listRepas;
-                        }
-                        else if(tempSize == size){
-                            deplacements.addAll(listRepas);
-                        }
-                    }
-                    else{
-                        deplacements = listRepas;
-                    }
-                }
-                else {
-                    if (deplacements.isEmpty()){
-                        deplacements = trouverDeplacementsSimples(typeJoueur, p);
-                    }
-                    else if(deplacements.get(0).getPionManges().size() == 1){
-                        deplacements.addAll(trouverDeplacementsSimples(typeJoueur, p));
-                    }
-                }
-                
+                deplacements = concatDeplacements(typeJoueur, p, deplacements, listRepas);
             }
         }
         else if(typeJoueur.equalsIgnoreCase("NOIR")){
@@ -217,29 +227,7 @@ public class Plateau {
                 pionsAmisHorsActuel.remove(p);
                 List<Deplacement> listRepas = this.trouverRepasPion(
                         "Noir", pionsAmisHorsActuel, this.joueurBlanc.getPions(), p);
-                if(!(listRepas.isEmpty())){
-                    if(!(deplacements.isEmpty())){
-                        int tempSize = listRepas.get(0).getPionManges().size();
-                        int size = deplacements.get(0).getPionManges().size();
-                        if(tempSize > size){
-                            deplacements = listRepas;
-                        }
-                        else if(tempSize == size){
-                            deplacements.addAll(listRepas);
-                        }
-                    }
-                    else{
-                        deplacements = listRepas;
-                    }
-                }
-                else {
-                    if (deplacements.isEmpty()){
-                        deplacements = trouverDeplacementsSimples(typeJoueur, p);
-                    }
-                    else if(deplacements.get(0).getPionManges().size() == 1){
-                        deplacements.addAll(trouverDeplacementsSimples(typeJoueur, p));
-                    }
-                }
+                deplacements = concatDeplacements(typeJoueur, p, deplacements, listRepas);
             }
         }
         else{
@@ -265,6 +253,7 @@ public class Plateau {
                 tabDeplacmt.add(dep);
             }
             newPos = new Point2D(p.getPos().getX()+1, p.getPos().getY()-1);
+            dep = new Deplacement();
             if(this.verifierPosLibre(newPos)){
                 dep.setPosInit(p.getPos());
                 dep.setPosFinale(newPos);
@@ -279,6 +268,7 @@ public class Plateau {
                 tabDeplacmt.add(dep);
             }
             newPos = new Point2D(p.getPos().getX()-1, p.getPos().getY()-1);
+            dep = new Deplacement();
             if(this.verifierPosLibre(newPos)){
                 dep.setPosInit(p.getPos());
                 dep.setPosFinale(newPos);
