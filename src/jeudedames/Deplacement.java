@@ -97,25 +97,23 @@ class Deplacement {
         if((obj == null) || !(obj instanceof Deplacement)){
             res = false;
         }
-        else{
-            Deplacement dep = (Deplacement)obj;
-            if(dep.pionManges.size()==this.pionManges.size()){
-                for(Pion p : this.pionManges){
-                    if (!dep.pionManges.contains(p)) {
-                        res = false;
-                    }
+        Deplacement dep = (Deplacement)obj;
+        if(dep.pionManges.size()==this.pionManges.size()){
+            for(Pion p : this.pionManges){
+                if (!dep.pionManges.contains(p)) {
+                    res = false;
                 }
             }
-            else{
-                res = false;
-            }
-            if(!dep.posFinale.equals(this.posFinale)){
-                res = false;
-            }
-            if(!dep.posInit.equals(this.posInit)){
-                res = false;
-            } 
         }
+        else{
+            res = false;
+        }
+        if(!dep.posFinale.equals(this.posFinale)){
+            res = false;
+        }
+        if(!dep.posInit.equals(this.posInit)){
+            res = false;
+        } 
 
         return res;
     }
