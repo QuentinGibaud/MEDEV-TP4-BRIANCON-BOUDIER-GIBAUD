@@ -6,6 +6,7 @@
 package jeudedames;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -16,7 +17,7 @@ class Deplacement {
     /**
      * Pions mangés
      */
-    private ArrayList<Pion> pionManges;
+    private List<Pion> pionManges;
     
     /**
      * Position initiale.
@@ -34,7 +35,7 @@ class Deplacement {
      * @param posInit
      * @param posFinale 
      */
-    public Deplacement(ArrayList<Pion> pionManges, Point2D posInit, Point2D posFinale) {
+    public Deplacement(List<Pion> pionManges, Point2D posInit, Point2D posFinale) {
         this.pionManges = pionManges;
         this.posInit = new Point2D(posInit);
         this.posFinale = new Point2D(posFinale);
@@ -60,11 +61,11 @@ class Deplacement {
         this.posFinale = posFinale;
     }
     
-    public ArrayList<Pion> getPionManges() {
+    public List<Pion> getPionManges() {
         return pionManges;
     }
 
-    public void setPionManges(ArrayList<Pion> pionManges) {
+    public void setPionManges(List<Pion> pionManges) {
         this.pionManges = new ArrayList<>(pionManges);
     }
 

@@ -7,6 +7,7 @@ package jeudedames;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -39,9 +40,9 @@ public class PlateauTest {
         System.out.println("initialisePlateau");
         Plateau instance = new Plateau("Sacha","Justine");
         instance.initialisePlateau();
-        ArrayList<Pion> pionNoir = new ArrayList<Pion>();
+        List<Pion> pionNoir = new ArrayList<Pion>();
         pionNoir = instance.getJoueurNoir().getPions();
-        ArrayList<Pion> pionBlanc = instance.getJoueurBlanc().getPions();
+        List<Pion> pionBlanc = instance.getJoueurBlanc().getPions();
         Simple pion1 = new Simple(new Point2D(0,3));
         Simple pion2 = new Simple(new Point2D(1,6));
         Simple pion3 = new Simple(new Point2D(2,1));
@@ -71,9 +72,9 @@ public class PlateauTest {
     public void testTrouverDeplacements() {
         System.out.println("initialisePlateau");
         Plateau instance = new Plateau("Sacha","Justine");
-        ArrayList<Pion> pionsBlancs = new ArrayList<>();
+        List<Pion> pionsBlancs = new ArrayList<>();
         pionsBlancs = instance.getJoueurBlanc().getPions();
-        ArrayList<Pion> pionsNoirs = new ArrayList<>();
+        List<Pion> pionsNoirs = new ArrayList<>();
         pionsNoirs = instance.getJoueurNoir().getPions();
         
         Simple pionN1 = new Simple(1, 5);
@@ -97,19 +98,19 @@ public class PlateauTest {
         Simple pionB8 = new Simple(8, 8);
         pionsBlancs.add(pionB8);
         
-        ArrayList<Pion> pionsManges1= new ArrayList<>();
+        List<Pion> pionsManges1= new ArrayList<>();
         pionsManges1.add(pionB4);
         pionsManges1.add(pionB5);
         pionsManges1.add(pionB6);
         pionsManges1.add(pionB7);
         Deplacement dep1 = new Deplacement(pionsManges1, pionN1.getPos(), new Point2D(5, 5));
-        ArrayList<Pion> pionsManges2 = new ArrayList<>();
+        List<Pion> pionsManges2 = new ArrayList<>();
         pionsManges2.add(pionB4);
         pionsManges2.add(pionB5);
         pionsManges2.add(pionB6);
         pionsManges2.add(pionB8);
         Deplacement dep2 = new Deplacement(pionsManges2, pionN1.getPos(), new Point2D(9, 9));
-        ArrayList<Deplacement> depsNoirs = instance.trouverDeplacements("Noir");
+        List<Deplacement> depsNoirs = instance.trouverDeplacements("Noir");
         assertTrue(depsNoirs.size()==2);
         assertTrue(depsNoirs.contains(dep1));
         assertTrue(depsNoirs.contains(dep2));

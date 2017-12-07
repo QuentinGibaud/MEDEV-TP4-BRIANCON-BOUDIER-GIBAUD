@@ -6,6 +6,7 @@
 package jeudedames;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe Plateau
@@ -134,12 +135,12 @@ public class Plateau {
      * @param typeJoueur Type du joueur (Blanc ou Noir)
      * @return Liste des déplacements possibles
      */
-    public ArrayList<Deplacement> trouverDeplacements(String typeJoueur){
-        ArrayList<Deplacement> deplacements = new ArrayList<>();
+    public List<Deplacement> trouverDeplacements(String typeJoueur){
+        List<Deplacement> deplacements = new ArrayList<>();
         
         if(typeJoueur.equalsIgnoreCase("BLANC")){
             for(Pion p: this.joueurBlanc.getPions()){
-                ArrayList<Deplacement> dep = this.trouverDeplacementPion("Blanc", this.joueurNoir.getPions(), p, true);
+                List<Deplacement> dep = this.trouverDeplacementPion("Blanc", this.joueurNoir.getPions(), p, true);
                 if(!(dep.isEmpty())){
                     if(!(deplacements.isEmpty())){
                         int tempSize = dep.get(0).getPionManges().size();
@@ -160,7 +161,7 @@ public class Plateau {
         }
         else if(typeJoueur.equalsIgnoreCase("NOIR")){
             for(Pion p: this.joueurNoir.getPions()){
-                ArrayList<Deplacement> dep = this.trouverDeplacementPion("Noir", this.joueurBlanc.getPions(), p, true);
+                List<Deplacement> dep = this.trouverDeplacementPion("Noir", this.joueurBlanc.getPions(), p, true);
                 if(!(dep.isEmpty())){
                     if(!(deplacements.isEmpty())){
                         int tempSize = dep.get(0).getPionManges().size();
@@ -192,9 +193,9 @@ public class Plateau {
      * @param premierAppel Booléen True pour le premier appel False sinon
      * @return Liste des déplacements possibles
      */
-    public ArrayList<Deplacement> trouverDeplacementPion(String typeJoueur, ArrayList<Pion> pionsAdverses, Pion p, boolean premierAppel){
+    public List<Deplacement> trouverDeplacementPion(String typeJoueur, List<Pion> pionsAdverses, Pion p, boolean premierAppel){
         int nbPionsMangesMax = 0;
-        ArrayList<Deplacement> tabDeplacmt = new ArrayList<>();
+        List<Deplacement> tabDeplacmt = new ArrayList<>();
         
         if(p instanceof Simple){
             for(int i=0; i<pionsAdverses.size(); i++){
@@ -205,10 +206,10 @@ public class Plateau {
                     int new_y = 2 * pAdverse.getPos().getY() - p.getPos().getY();
                     Point2D nextPos = new Point2D(new_x, new_y);
                     if(this.verifierPosLibre(nextPos)){
-                        ArrayList<Pion> newPionsAdverses = new ArrayList<>(pionsAdverses);
+                        List<Pion> newPionsAdverses = new ArrayList<>(pionsAdverses);
                         newPionsAdverses.remove(i);
                         Simple s = new Simple(nextPos);
-                        ArrayList<Deplacement> tabDep = this.trouverDeplacementPion(typeJoueur, newPionsAdverses, s, false);
+                        List<Deplacement> tabDep = this.trouverDeplacementPion(typeJoueur, newPionsAdverses, s, false);
                         if(tabDep.isEmpty()==false){
                             int size = tabDep.get(0).getPionManges().size();
                             if(size > nbPionsMangesMax-1){
