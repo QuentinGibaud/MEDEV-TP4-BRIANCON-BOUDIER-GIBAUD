@@ -72,10 +72,8 @@ public class PlateauTest {
     public void testTrouverDeplacements() {
         System.out.println("initialisePlateau");
         Plateau instance = new Plateau("Sacha","Justine");
-        List<Pion> pionsBlancs = new ArrayList<>();
-        pionsBlancs = instance.getJoueurBlanc().getPions();
-        List<Pion> pionsNoirs = new ArrayList<>();
-        pionsNoirs = instance.getJoueurNoir().getPions();
+        List<Pion> pionsBlancs = instance.getJoueurBlanc().getPions();
+        List<Pion> pionsNoirs =instance.getJoueurNoir().getPions();
         
         Simple pionN1 = new Simple(1, 5);
         pionsNoirs.add(pionN1);

@@ -27,10 +27,20 @@ public class DameTest {
     public static void tearDownClass() {
     }
 
+    /**
+     * Test of constructor with and without parameters of class Dame
+     */
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testDame() {
+        System.out.println("constructor without parameters");
+        Dame d1 = new Dame();
+        assertEquals(0,d1.getPos().getX());
+        assertEquals(0,d1.getPos().getY());
+        System.out.println("constructor with parameters");
+        Point2D p = new Point2D(2,3);
+        Dame d2 = new Dame(p);
+        assertEquals(2,d2.getPos().getX());
+        assertEquals(3,d2.getPos().getY());
     }
     
 }
