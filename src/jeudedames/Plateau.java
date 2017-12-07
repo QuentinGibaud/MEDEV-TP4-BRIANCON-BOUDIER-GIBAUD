@@ -111,23 +111,64 @@ public class Plateau {
      * @return Booléen confirmant ou non que la position est libre.
      */
     public boolean verifierPosLibre(Point2D pos){
+        boolean res = true;
         
         if( pos.getX()<0 || pos.getX()>=10 ||
             pos.getY()<0 || pos.getY()>=10){
-            return false;
+            res = false;
         }
-        for(Pion p : this.joueurBlanc.getPions()){
-            if(pos.equals(p.getPos())){
-                return false;
+        if(res){
+            for(Pion p : this.joueurBlanc.getPions()){
+                if(pos.equals(p.getPos())){
+                    res = false;
+                    break;
+                }
             }
         }
-        for(Pion p : this.joueurNoir.getPions()){
-            if(pos.equals(p.getPos())){
-                return false;
+        if(res){
+            for(Pion p : this.joueurNoir.getPions()){
+                if(pos.equals(p.getPos())){
+                    res = false;
+                    break;
+                }
             }
         }
         
-        return true;
+        return res;
+    }
+    
+    /**
+     * Vérification que la position est libre
+     * @param pos Position à vérifier.
+     * @param pions1
+     * @param pions2
+     * @return Booléen confirmant ou non que la position est libre.
+     */
+    public boolean verifierPosLibre(Point2D pos, List<Pion> pions1, List<Pion> pions2){
+        boolean res = true;
+        
+        if( pos.getX()<0 || pos.getX()>=10 ||
+            pos.getY()<0 || pos.getY()>=10){
+            res = false;
+        }
+        if(res){
+            for(Pion p : pions1){
+                if(pos.equals(p.getPos())){
+                    res = false;
+                    break;
+                }
+            }
+        }
+        if(res){
+            for(Pion p : pions2){
+                if(pos.equals(p.getPos())){
+                    res = false;
+                    break;
+                }
+            }
+        }
+        
+        return res;
     }
 
     /**
@@ -140,20 +181,31 @@ public class Plateau {
         
         if(typeJoueur.equalsIgnoreCase("BLANC")){
             for(Pion p: this.joueurBlanc.getPions()){
-                List<Deplacement> dep = this.trouverDeplacementPion("Blanc", this.joueurNoir.getPions(), p, true);
-                if(!(dep.isEmpty())){
+                List<Pion> pionsAmisHorsActuel = new ArrayList<>(this.joueurBlanc.getPions());
+                pionsAmisHorsActuel.remove(p);
+                List<Deplacement> listRepas = this.trouverRepasPion(
+                        "Blanc", pionsAmisHorsActuel, this.joueurNoir.getPions(), p);
+                if(!(listRepas.isEmpty())){
                     if(!(deplacements.isEmpty())){
-                        int tempSize = dep.get(0).getPionManges().size();
+                        int tempSize = listRepas.get(0).getPionManges().size();
                         int size = deplacements.get(0).getPionManges().size();
                         if(tempSize > size){
-                            deplacements = dep;
+                            deplacements = listRepas;
                         }
                         else if(tempSize == size){
-                            deplacements.addAll(dep);
+                            deplacements.addAll(listRepas);
                         }
                     }
                     else{
-                        deplacements = dep;
+                        deplacements = listRepas;
+                    }
+                }
+                else {
+                    if (deplacements.isEmpty()){
+                        deplacements = trouverDeplacementsSimples(typeJoueur, p);
+                    }
+                    else if(deplacements.get(0).getPionManges().size() == 1){
+                        deplacements.addAll(trouverDeplacementsSimples(typeJoueur, p));
                     }
                 }
                 
@@ -161,20 +213,31 @@ public class Plateau {
         }
         else if(typeJoueur.equalsIgnoreCase("NOIR")){
             for(Pion p: this.joueurNoir.getPions()){
-                List<Deplacement> dep = this.trouverDeplacementPion("Noir", this.joueurBlanc.getPions(), p, true);
-                if(!(dep.isEmpty())){
+                List<Pion> pionsAmisHorsActuel = new ArrayList<>(this.joueurNoir.getPions());
+                pionsAmisHorsActuel.remove(p);
+                List<Deplacement> listRepas = this.trouverRepasPion(
+                        "Noir", pionsAmisHorsActuel, this.joueurBlanc.getPions(), p);
+                if(!(listRepas.isEmpty())){
                     if(!(deplacements.isEmpty())){
-                        int tempSize = dep.get(0).getPionManges().size();
+                        int tempSize = listRepas.get(0).getPionManges().size();
                         int size = deplacements.get(0).getPionManges().size();
                         if(tempSize > size){
-                            deplacements = dep;
+                            deplacements = listRepas;
                         }
                         else if(tempSize == size){
-                            deplacements.addAll(dep);
+                            deplacements.addAll(listRepas);
                         }
                     }
                     else{
-                        deplacements = dep;
+                        deplacements = listRepas;
+                    }
+                }
+                else {
+                    if (deplacements.isEmpty()){
+                        deplacements = trouverDeplacementsSimples(typeJoueur, p);
+                    }
+                    else if(deplacements.get(0).getPionManges().size() == 1){
+                        deplacements.addAll(trouverDeplacementsSimples(typeJoueur, p));
                     }
                 }
             }
@@ -188,12 +251,53 @@ public class Plateau {
     /**
      * 
      * @param typeJoueur Type du joueur (Blanc ou Noir)
+     * @param p Pion pour lequel il faut trouver les déplacements
+     * @return 
+     */
+    public List<Deplacement> trouverDeplacementsSimples(String typeJoueur, Pion p){
+        List<Deplacement> tabDeplacmt = new ArrayList<>();
+        Deplacement dep = new Deplacement();
+        if(typeJoueur.equalsIgnoreCase("NOIR")){
+            Point2D newPos = new Point2D(p.getPos().getX()+1, p.getPos().getY()+1);
+            if(this.verifierPosLibre(newPos)){
+                dep.setPosInit(p.getPos());
+                dep.setPosFinale(newPos);
+                tabDeplacmt.add(dep);
+            }
+            newPos = new Point2D(p.getPos().getX()+1, p.getPos().getY()-1);
+            if(this.verifierPosLibre(newPos)){
+                dep.setPosInit(p.getPos());
+                dep.setPosFinale(newPos);
+                tabDeplacmt.add(dep);
+            }
+        }
+        else if(typeJoueur.equalsIgnoreCase("BLANC")){
+            Point2D newPos = new Point2D(p.getPos().getX()-1, p.getPos().getY()+1);
+            if(this.verifierPosLibre(newPos)){
+                dep.setPosInit(p.getPos());
+                dep.setPosFinale(newPos);
+                tabDeplacmt.add(dep);
+            }
+            newPos = new Point2D(p.getPos().getX()-1, p.getPos().getY()-1);
+            if(this.verifierPosLibre(newPos)){
+                dep.setPosInit(p.getPos());
+                dep.setPosFinale(newPos);
+                tabDeplacmt.add(dep);
+            }
+        }
+        
+        return tabDeplacmt;
+    }
+    
+    /**
+     * 
+     * @param typeJoueur Type du joueur (Blanc ou Noir)
+     * @param pionsAmisHorsActuel Liste des pions amis sauf le pion que l'on veut déplacer
      * @param pionsAdverses Liste des pions adverses non mangés
      * @param p Pion pour lequel il faut trouver les déplacements
-     * @param premierAppel Booléen True pour le premier appel False sinon
      * @return Liste des déplacements possibles
      */
-    public List<Deplacement> trouverDeplacementPion(String typeJoueur, List<Pion> pionsAdverses, Pion p, boolean premierAppel){
+    public List<Deplacement> trouverRepasPion(String typeJoueur, List<Pion> pionsAmisHorsActuel, List<Pion> pionsAdverses, Pion p){
         int nbPionsMangesMax = 0;
         List<Deplacement> tabDeplacmt = new ArrayList<>();
         
@@ -205,11 +309,12 @@ public class Plateau {
                     int new_x = 2 * pAdverse.getPos().getX() - p.getPos().getX();
                     int new_y = 2 * pAdverse.getPos().getY() - p.getPos().getY();
                     Point2D nextPos = new Point2D(new_x, new_y);
-                    if(this.verifierPosLibre(nextPos)){
+                    if(this.verifierPosLibre(nextPos, pionsAmisHorsActuel, pionsAdverses)){
                         List<Pion> newPionsAdverses = new ArrayList<>(pionsAdverses);
                         newPionsAdverses.remove(i);
                         Simple s = new Simple(nextPos);
-                        List<Deplacement> tabDep = this.trouverDeplacementPion(typeJoueur, newPionsAdverses, s, false);
+                        List<Deplacement> tabDep = this.trouverRepasPion(
+                                typeJoueur, pionsAmisHorsActuel, newPionsAdverses, s);
                         if(tabDep.isEmpty()==false){
                             int size = tabDep.get(0).getPionManges().size();
                             if(size > nbPionsMangesMax-1){
@@ -237,37 +342,6 @@ public class Plateau {
                             tabDeplacmt.add(dep);
                             nbPionsMangesMax = 1;
                         }
-                    }
-                }
-            }
-            if(nbPionsMangesMax==0 && premierAppel){
-                Deplacement dep = new Deplacement();
-                if(typeJoueur.equalsIgnoreCase("NOIR")){
-                    Point2D newPos = new Point2D(p.getPos().getX()+1, p.getPos().getY()+1);
-                    if(this.verifierPosLibre(newPos)){
-                        dep.setPosInit(p.getPos());
-                        dep.setPosFinale(newPos);
-                        tabDeplacmt.add(dep);
-                    }
-                    newPos = new Point2D(p.getPos().getX()+1, p.getPos().getY()-1);
-                    if(this.verifierPosLibre(newPos)){
-                        dep.setPosInit(p.getPos());
-                        dep.setPosFinale(newPos);
-                        tabDeplacmt.add(dep);
-                    }
-                }
-                else{
-                    Point2D newPos = new Point2D(p.getPos().getX()-1, p.getPos().getY()+1);
-                    if(this.verifierPosLibre(newPos)){
-                        dep.setPosInit(p.getPos());
-                        dep.setPosFinale(newPos);
-                        tabDeplacmt.add(dep);
-                    }
-                    newPos = new Point2D(p.getPos().getX()-1, p.getPos().getY()-1);
-                    if(this.verifierPosLibre(newPos)){
-                        dep.setPosInit(p.getPos());
-                        dep.setPosFinale(newPos);
-                        tabDeplacmt.add(dep);
                     }
                 }
             }
