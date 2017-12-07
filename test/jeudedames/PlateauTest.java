@@ -131,12 +131,27 @@ public class PlateauTest {
         System.out.println("verifierPosLibre_Point2D");
         Point2D pos1 = new Point2D(0, 0);
         Point2D pos2 = new Point2D(0, 1);
+        Point2D pos3 = new Point2D(9, 0);
+        Point2D pos4 = new Point2D(0, 10);
+        Point2D pos5 = new Point2D(9, -1);
+        Point2D pos6 = new Point2D(-1, 0);
+        Point2D pos7 = new Point2D(0, 10);
         Plateau instance = new Plateau("A", "B");
         instance.initialisePlateau();
         boolean result1 = instance.verifierPosLibre(pos1);
         boolean result2 = instance.verifierPosLibre(pos2);
+        boolean result3 = instance.verifierPosLibre(pos3);
+        boolean result4 = instance.verifierPosLibre(pos4);
+        boolean result5 = instance.verifierPosLibre(pos5);
+        boolean result6 = instance.verifierPosLibre(pos6);
+        boolean result7 = instance.verifierPosLibre(pos7);
         assertEquals(true, result1);
         assertEquals(false, result2);
+        assertEquals(false, result3);
+        assertEquals(false, result4);
+        assertEquals(false, result5);
+        assertEquals(false, result6);
+        assertEquals(false, result7);
     }
 
     /**
@@ -147,14 +162,29 @@ public class PlateauTest {
         System.out.println("verifierPosLibre_3args");
         Point2D pos1 = new Point2D(0, 0);
         Point2D pos2 = new Point2D(0, 1);
+        Point2D pos3 = new Point2D(9, 0);
+        Point2D pos4 = new Point2D(10, 0);
+        Point2D pos5 = new Point2D(9, -1);
+        Point2D pos6 = new Point2D(-1, 0);
+        Point2D pos7 = new Point2D(0, 10);
         Plateau instance = new Plateau("A", "B");
         instance.initialisePlateau();
         List<Pion> pions1 = instance.getJoueurBlanc().getPions();
         List<Pion> pions2 = instance.getJoueurNoir().getPions();
         boolean result1 = instance.verifierPosLibre(pos1, pions1, pions2);
         boolean result2 = instance.verifierPosLibre(pos2, pions1, pions2);
+        boolean result3 = instance.verifierPosLibre(pos3, pions1, pions2);
+        boolean result4 = instance.verifierPosLibre(pos4, pions1, pions2);
+        boolean result5 = instance.verifierPosLibre(pos5, pions1, pions2);
+        boolean result6 = instance.verifierPosLibre(pos6, pions1, pions2);
+        boolean result7 = instance.verifierPosLibre(pos7, pions1, pions2);
         assertEquals(true, result1);
         assertEquals(false, result2);
+        assertEquals(false, result3);
+        assertEquals(false, result4);
+        assertEquals(false, result5);
+        assertEquals(false, result6);
+        assertEquals(false, result7);
     }
 
     

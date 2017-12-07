@@ -113,8 +113,7 @@ public class Plateau {
     public boolean verifierPosLibre(Point2D pos){
         boolean res = true;
         
-        if( pos.getX()<0 || pos.getX()>=10 ||
-            pos.getY()<0 || pos.getY()>=10){
+        if( pos.getX()<0 || pos.getX()>=10 || pos.getY()<0 || pos.getY()>=10){
             res = false;
         }
         if(res){
@@ -147,8 +146,7 @@ public class Plateau {
     public boolean verifierPosLibre(Point2D pos, List<Pion> pions1, List<Pion> pions2){
         boolean res = true;
         
-        if( pos.getX()<0 || pos.getX()>=10 ||
-            pos.getY()<0 || pos.getY()>=10){
+        if( pos.getX()<0 || pos.getX()>=10 || pos.getY()<0 || pos.getY()>=10){
             res = false;
         }
         if(res){
@@ -199,7 +197,7 @@ public class Plateau {
             if (deplacements.isEmpty()){
                 deplacements = trouverDeplacementsSimples(typeJoueur, p);
             }
-            else if(deplacements.get(0).getPionManges().size() == 1){
+            else if(deplacements.get(0).getPionManges().isEmpty()){
                 deplacements.addAll(trouverDeplacementsSimples(typeJoueur, p));
             }
         }
