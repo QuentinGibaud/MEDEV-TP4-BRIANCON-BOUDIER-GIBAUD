@@ -67,7 +67,7 @@ public class PlateauTest {
      * Test of trouverDeplacements method, of class Plateau.
      */
     @Test
-    public void testTrouverDeplacements() {
+    public void testTrouverDeplacementsNoir() {
         System.out.println("initialisePlateau");
         Plateau instance = new Plateau("Sacha", "Justine");
         List<Pion> pionsBlancs = instance.getJoueurBlanc().getPions();
@@ -155,6 +155,87 @@ public class PlateauTest {
         boolean result2 = instance.verifierPosLibre(pos2, pions1, pions2);
         assertEquals(true, result1);
         assertEquals(false, result2);
+    }
+
+    
+    /**
+     * Test of trouverDeplacements method, of class Plateau.
+     */
+    @Test
+    public void testTrouverDeplacementsBlanc() {
+        System.out.println("initialisePlateau");
+        Plateau instance = new Plateau("Sacha","Justine");
+        List<Pion> pionsBlancs = instance.getJoueurBlanc().getPions();
+        List<Pion> pionsNoirs =instance.getJoueurNoir().getPions();
+        
+        Simple pionB1 = new Simple(1, 5);
+        pionsBlancs.add(pionB1);
+        Simple pionB2 = new Simple(3, 1);
+        pionsBlancs.add(pionB2);
+        Simple pionN1 = new Simple(4, 2);
+        pionsNoirs.add(pionN1);
+        Simple pionN2 = new Simple(6, 2);
+        pionsNoirs.add(pionN2);
+        Simple pionN3 = new Simple(2, 4);
+        pionsNoirs.add(pionN3);
+        Simple pionN4 = new Simple(2, 6);
+        pionsNoirs.add(pionN4);
+        Simple pionN5 = new Simple(4, 8);
+        pionsNoirs.add(pionN5);
+        Simple pionN6 = new Simple(6, 8);
+        pionsNoirs.add(pionN6);
+        Simple pionN7 = new Simple(6, 6);
+        pionsNoirs.add(pionN7);
+        Simple pionN8 = new Simple(8, 8);
+        pionsNoirs.add(pionN8);
+        
+        List<Pion> pionsManges1= new ArrayList<>();
+        pionsManges1.add(pionN4);
+        pionsManges1.add(pionN5);
+        pionsManges1.add(pionN6);
+        pionsManges1.add(pionN7);
+        Deplacement dep1 = new Deplacement(pionsManges1, pionB1.getPos(), new Point2D(5, 5));
+        List<Pion> pionsManges2 = new ArrayList<>();
+        pionsManges2.add(pionN4);
+        pionsManges2.add(pionN5);
+        pionsManges2.add(pionN6);
+        pionsManges2.add(pionN8);
+        Deplacement dep2 = new Deplacement(pionsManges2, pionB1.getPos(), new Point2D(9, 9));
+        List<Deplacement> depsBlancs = instance.trouverDeplacements("Blanc");
+        assertTrue(depsBlancs.size()==2);
+        assertTrue(depsBlancs.contains(dep1));
+        assertTrue(depsBlancs.contains(dep2));
+    }
+    
+    /**
+     * Test of trouverDeplacements method, of class Plateau.
+     */
+    @Test
+    public void testTrouverDeplacements2() {
+        System.out.println("initialisePlateau");
+        Plateau instance = new Plateau("Sacha","Justine");
+        List<Pion> pionsBlancs = instance.getJoueurBlanc().getPions();
+        List<Pion> pionsNoirs =instance.getJoueurNoir().getPions();
+        
+        Simple pionN1 = new Simple(1, 5);
+        pionsNoirs.add(pionN1);
+        Simple pionB1 = new Simple(6, 6);
+        pionsBlancs.add(pionB1);
+        
+        List<Pion> pionsManges= new ArrayList<>();
+        Deplacement dep1 = new Deplacement(pionsManges, pionN1.getPos(), new Point2D(2, 6));
+        Deplacement dep2 = new Deplacement(pionsManges, pionN1.getPos(), new Point2D(2, 4));
+        List<Deplacement> depsNoirs = instance.trouverDeplacements("Noir");
+        assertTrue(depsNoirs.size()==2);
+        assertTrue(depsNoirs.contains(dep1));
+        assertTrue(depsNoirs.contains(dep2));
+        
+        dep1 = new Deplacement(pionsManges, pionB1.getPos(), new Point2D(5, 5));
+        dep2 = new Deplacement(pionsManges, pionB1.getPos(), new Point2D(5, 7));
+        List<Deplacement> depsBlancs = instance.trouverDeplacements("Blanc");
+        assertTrue(depsBlancs.size()==2);
+        assertTrue(depsBlancs.contains(dep1));
+        assertTrue(depsBlancs.contains(dep2));
     }
 
 }
