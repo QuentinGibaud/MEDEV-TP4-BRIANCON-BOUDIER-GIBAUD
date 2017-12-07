@@ -339,4 +339,42 @@ public class Plateau {
         
         return tabDeplacmt;
     }
+    
+    /**
+     * 
+     * @param typeJoueur Type du joueur (Blanc ou Noir)
+     * @param dep Deplacement à faire
+     * @return Réussite du déplacement et des suppressions de pions
+     */
+    public boolean deplacer(String typeJoueur, Deplacement dep){
+        List<Pion> pionsAmis = null;
+        List<Pion> pionsAdverses = null;
+        boolean succes = true;
+        if(typeJoueur.equalsIgnoreCase("BLANC")){
+            pionsAmis =this.joueurBlanc.getPions();
+            pionsAdverses = this.joueurNoir.getPions();
+        }
+        else{
+            pionsAmis = this.joueurNoir.getPions();
+            pionsAdverses = this.joueurBlanc.getPions();
+        }
+        
+        for(Pion p : dep.getPionManges()){
+            if(!(pionsAdverses.remove(p))){
+                succes = false;
+            }
+        }
+
+        Pion pionADeplacer = new Simple(dep.getPosInit());
+        int index = pionsAmis.indexOf(pionADeplacer);
+        
+        if(index==-1){
+            succes = false;
+        }
+        else{
+            pionsAmis.get(index).setPos(dep.getPosFinale());
+        }
+        
+        return succes;
+    }
 }

@@ -5,7 +5,6 @@
  */
 package jeudedames;
 
-import java.util.ArrayList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,6 +36,21 @@ public class DeplacementTest {
         Deplacement d = new Deplacement();
         int res = d.hashCode();
         assertEquals(2965196,res);
+    }
+    
+    /**
+     * Test of equals method, of class Deplacement
+     */
+    @Test
+    public void testEquals(){
+        System.out.println("equals");
+        Deplacement d = new Deplacement();
+        Deplacement p = new Deplacement();
+        Simple s = new Simple();
+        assertTrue(d.equals(p));
+        assertTrue(d.equals(s));
+        p = null;
+        assertFalse(d.equals(p));
     }
     
 }
