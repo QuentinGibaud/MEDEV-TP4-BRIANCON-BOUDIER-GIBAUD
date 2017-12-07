@@ -340,6 +340,10 @@ public class Plateau {
         return tabDeplacmt;
     }
     
+        
+    /**
+     * Affichage graphique des pions
+     */
     public void affichagePlateau(){
         List<Pion> pionNoir = joueurNoir.getPions();
         List<Pion> pionBlanc = joueurBlanc.getPions();
