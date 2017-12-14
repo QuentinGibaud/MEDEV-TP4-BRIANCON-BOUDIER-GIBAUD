@@ -5,18 +5,22 @@
 	<target name="checkDependencies"
 			description="Check if dependencies are satisfied">
 		<property name="src.location" location="src"/>
-		<property name="bin.location" location="bin"/>
+		<property name="bincode.location" location="bin/src"/>
+		<property name="bintest.location" location="bin/test"/>
 		<property name="test.location" location="test"/>
 		<property name="javadoc.location" location="javadoc"/>
+		<property name="report.location" location="report"/>
 		
 		<echo message="Source directory is ${src.location}"/>
 		
 		<condition property="src.available">
 			<and>
 				<available file="${src.location}" type="dir"/>
-				<available file="${bin.location}" type="dir"/>
+				<available file="${bincode.location}" type="dir"/>
+				<available file="${bintest.location}" type="dir"/>
 				<available file="${test.location}" type="dir"/>
 				<available file="${javadoc.location}" type="dir"/>
+				<available file="${report.location}" type="dir"/>
 			</and>
 		</condition>
 		
@@ -28,11 +32,11 @@
 		
 		<echo message="Building application ..."/>
 		
-		<javac srcdir="${src.location}" destdir="${bin.location}"/>
+		<javac srcdir="${src.location}" destdir="${bincode.location}"/>
 		
 		<echo message="Building tests ..."/>
 		
-		<javac srcdir="${test.location}" destdir="${bin.location}"/>
+		<javac srcdir="${test.location}" destdir="${bintest.location}" classpath="${bincode.location}"/>
 		
 		<echo message="Writing javadoc ..."/>
 		
@@ -44,12 +48,49 @@
 	
 	<!--Archives .jar-->
 	<target name="packaging" description="Create the jar"
-			depends="build">
+			depends="testjar">
 		<echo message="Generating the jar ..."/>
-		<jar jarfile="JeuDeDames.jar" basedir="src"/>
+		<jar jarfile="JeuDeDames.jar" basedir="src" includes="bin/src/jeudedames/*.class"/>
 	</target>
-
 	
+	<!--Tests en .jar-->
+	<target name="testjar" description="Test in jar"
+			depends="test.report">
+		<echo message="Generating the jar for the tests ..."/>
+		<jar jarfile="TestJeuDeDames.jar" basedir="test" includes="bin/test/jeudedames/*.class"/>
+	</target>
+	
+	<!--Lancement des tests-->
+	<target name="test" description="Run unit tests"
+			depends="build">
+		<echo message="Launching unit tests ..."/>
+		<junit printsummary="true" haltonfailure="false" fork="true" failureproperty="test.failures">
+			<assertions>
+				<enable/>
+			</assertions>
+			<classpath>
+				<pathelement location="bin/test/jeudedames/"/>
+				<pathelement location="bin/src/jeudedames/"/>
+			</classpath>
+			<formatter type="plain"/>
+			<formatter type="xml"/>
+			<batchtest todir="${report.location}">
+				<fileset dir="bin/test/jeudedames/" includes="bin/test/jeudedames/*Test.class"/>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<!--Lancement des rapports de tests-->
+	<target name="test.report" depends="test" description="Generate HTML unit test reports">
+		<echo message="Generating the HTML report for the tests ..."/>
+		<junitreport todir="${report.location}">
+			<fileset dir="${report.location}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${report.location}"/>
+		</junitreport>
+		<fail if="test.failures" message="Problème lors des tests"/>
+	</target>
 	
 </project>
 
