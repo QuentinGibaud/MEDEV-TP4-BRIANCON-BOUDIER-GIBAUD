@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="JeuDeDames" default="build" basedir="..">
+<project name="JeuDeDames" default="packaging" basedir="..">
 	<description>This is the JeuDeDames project.</description>
 	
 	<target name="checkDependencies"
@@ -42,6 +42,12 @@
 		
 	</target>
 	
+	<!--Archives .jar-->
+	<target name="packaging" description="Create the jar"
+			depends="build">
+		<echo message="Generating the jar ..."/>
+		<jar jarfile="JeuDeDames.jar" basedir="src"/>
+	</target>
 
 	
 	
