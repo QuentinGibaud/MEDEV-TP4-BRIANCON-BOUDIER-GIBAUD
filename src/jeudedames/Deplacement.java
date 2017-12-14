@@ -116,7 +116,7 @@ class Deplacement {
                 res = false;
             } 
         }
-
+        
         return res;
     }
 
