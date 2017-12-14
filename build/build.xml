@@ -2,6 +2,11 @@
 <project name="JeuDeDames" default="packaging" basedir="..">
 	<description>This is the JeuDeDames project.</description>
 	
+	<path id="classpath.test">
+		<pathelement location="lib/junit_4/junit-4.12.jar"/>
+		<pathelement location="bin/src/jeudedames/"/>
+	</path>
+	
 	<target name="checkDependencies"
 			description="Check if dependencies are satisfied">
 		<property name="src.location" location="src"/>
@@ -71,11 +76,12 @@
 			<classpath>
 				<pathelement location="bin/test/jeudedames/"/>
 				<pathelement location="bin/src/jeudedames/"/>
+				<path refid="classpath.test"/>
 			</classpath>
 			<formatter type="plain"/>
 			<formatter type="xml"/>
 			<batchtest todir="${report.location}">
-				<fileset dir="bin/test/jeudedames/" includes="bin/test/jeudedames/*Test.class"/>
+				<fileset dir="bin/test/jeudedames" includes="**/*Test.class"/>
 			</batchtest>
 		</junit>
 	</target>
