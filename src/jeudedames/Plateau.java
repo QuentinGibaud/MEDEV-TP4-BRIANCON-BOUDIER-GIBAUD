@@ -369,4 +369,11 @@ public class Plateau {
             System.out.println("");
         }
     }
+    
+    /*public void tourDeJeu(String typeJoueur){
+        List<Deplacement> deplacement = new ArrayList<>();
+        deplacement = trouverDeplacements(typeJoueur);
+        
+      
+    }*/
 }
